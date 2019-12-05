@@ -43,7 +43,7 @@
           type="primary"
           shape="circle"
           icon="caret-right"
-          :disabled="recipe.job.status == 'Running'"
+          :disabled="!recipe.job || recipe.job.status == 'Running'"
           )
 </template>
 
