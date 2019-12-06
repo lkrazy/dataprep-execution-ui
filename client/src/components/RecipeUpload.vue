@@ -86,6 +86,6 @@
 <style scoped lang="stylus">
   .uploader-content
     max-width 100%
-    max-height 500px
+    max-height 400px
     overflow-y auto
 </style>

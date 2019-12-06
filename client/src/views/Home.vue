@@ -3,9 +3,9 @@
     recipe-upload(v-model="uploadDialog")
     a-layout-header.transparent-bg.table-toolbar
       a-row(type="flex" justify="start")
-        a-col.table-toolbar-title(:span="12")
+        a-col.table-toolbar-title(:span="16")
           h2 Community Hospital Corp. DataPrep Execution
-        a-col.justify-content-end.align-items-center(:span="12")
+        a-col.justify-content-end.align-items-center(:span="8")
           a-button.toolbar-btn(type="primary" shape="circle" icon="sync" @click="loadData")
           a-button.toolbar-btn(
             type="primary"
@@ -16,7 +16,7 @@
     a-table(
       :columns="headers"
       :dataSource="items"
-      :scroll="{ y: 240 }"
+      :scroll="{ y: maxTableHeight }"
       rowKey="id"
       )
       template(slot="progress" slot-scope="job")
@@ -76,13 +76,13 @@
       key: 'progress',
       dataIndex: 'job',
       scopedSlots: { customRender: 'progress' },
-      fixed: 'right',
+      // fixed: 'right',
       width: 150
     },
     {
       title: 'Action',
       key: 'action',
-      fixed: 'right',
+      // fixed: 'right',
       width: 150,
       scopedSlots: { customRender: 'action' },
     },
@@ -101,7 +101,11 @@
       }
     },
     props: {
-
+    },
+    computed: {
+      maxTableHeight() {
+        return window.innerHeight - 100
+      }
     },
     methods: {
       openUploadDialog() {
@@ -122,8 +126,12 @@
 </script>
 <style lang="stylus">
   .table-toolbar
+    padding 0 16px !important
     .table-toolbar-title
       h2
+        max-width 100%
+        overflow hidden
+        text-overflow ellipsis
         line-height 64px
         margin 0
         white-space nowrap
